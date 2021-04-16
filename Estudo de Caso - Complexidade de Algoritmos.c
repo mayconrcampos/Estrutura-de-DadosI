@@ -6,23 +6,26 @@
 */
 
 int busca(int vet[], int tam, int arg){
-    int i;
-    for(i = 0; i < tam; i++){
+    for(int i = 0; i < tam; i++){
         if(arg == vet[i]){
-            printf("arg: %d vet[i]: %d\n", arg, vet[i]);
+            printf("Número: %d | Encontrado no Índice: %d \n", arg, i);
             return i;
         }
-        return -1;
+        
     }
+    printf("Número %d não existe no vetor.\n", arg);
+    return -1;
 }
 
 int main(){
+    int num = 0;
     int vetor[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    int tamanho = sizeof(vetor) / sizeof(int);
+    
+    printf("Digite um número pra buscar: ");
+    scanf("%d", &num);
 
+    busca(vetor, 10, num);
 
-    printf("%d \n\n", busca(vetor, tamanho, 2));
-
+  
     return 0;
 }
-
