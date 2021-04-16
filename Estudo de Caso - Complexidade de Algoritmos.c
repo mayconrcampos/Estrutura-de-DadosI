@@ -19,13 +19,20 @@ int busca(int vet[], int tam, int arg){
 
 int main(){
     int num = 0;
+    int continua;
     int vetor[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     
-    printf("Digite um número pra buscar: ");
-    scanf("%d", &num);
+    do
+    {
+        printf("Digite um número pra buscar: ");
+        scanf("%d", &num);
+        busca(vetor, 10, num);
 
-    busca(vetor, 10, num);
+        printf("\nQuer continuar?\n1. SIM\n0. Sair\n");
+        scanf("%d", &continua);
 
-  
+    } while (continua != 0);
+    printf("Você saiu do Programa.\n\n");
+    
     return 0;
 }
