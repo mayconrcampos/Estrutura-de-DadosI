@@ -74,10 +74,7 @@ int main(){
             break;
         }
 
-
     } while (escolha != 0);
     
-    
-
     return 0;
 }
