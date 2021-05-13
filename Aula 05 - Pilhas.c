@@ -25,11 +25,12 @@ void empilha(int elemento){
 int desempilha(){
     int elemento;
     if(pilha.topo == pilha.inicio){
-        printf("Fila Vazia. \n");
+        printf("Pilha Vazia. \n");
     }else{
-        pilha.dados[pilha.topo - 1] = 0;
+        pilha.dados[pilha.topo] = 0;
         pilha.topo--;
         elemento = pilha.dados[pilha.topo];
+        printf("%d desempilhado.\n\n", pilha.dados[pilha.topo]);
         return elemento;
     }
 }
@@ -39,7 +40,7 @@ void mostrar_pilha(){
         printf("Pilha Vazia! Você precisa empilhar elementos.\n");
     }else{
         printf("\nMostrando Pilha: \n\n");
-        for(int i = 0; i < tamanho; i++){
+        for(int i = pilha.topo - 1; i >= pilha.inicio; i--){
             printf("=> %d \n", pilha.dados[i]);
         }
     }
@@ -49,7 +50,7 @@ void mostrar_pilha(){
 int main(){
     pilha.inicio = 0;
     pilha.topo = 0;
-    int opt;
+    int opt, num;
 
     do{
         printf("Digite uma das opções:\n");
@@ -66,16 +67,20 @@ int main(){
             break;
         case 1:
             printf("Opção 1. Empilhar!\n\n\n\n\n");
+            printf("Digite um número para empilhar.\n");
+            scanf("%d", &num);
+            empilha(num);
+            mostrar_pilha();
             break;
         case 2:
             printf("Opção 2. Desempilhar!\n\n\n\n\n");
+            desempilha();
+            mostrar_pilha();
             break;
         case 3:
             printf("Opção 3. Mostrar Pilha!\n\n\n\n\n");
             mostrar_pilha();
             break;
-        
-        
         default:
             printf("Opção Inválida!\n\n\n\n\n");
             break;
@@ -83,7 +88,6 @@ int main(){
         
     } while (opt != 0);
     
-
     return 0;
 }
 
