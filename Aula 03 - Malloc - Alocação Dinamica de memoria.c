@@ -3,7 +3,7 @@
 
 int main(){
     int *ptr;
-    ptr = (int *) malloc(4);
+    ptr = (int *) malloc(sizeof(int));
 
     if(ptr == NULL){
         printf("Erro!\n");

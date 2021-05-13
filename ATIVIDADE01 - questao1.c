@@ -6,12 +6,12 @@ typedef struct NO{
     NO* prox;
 }NO;
 
-typedef struct FILA{
+typedef struct{
     NO* inicio;
     NO* fim;
-} FILA;
+}FILA;
 
-FILA *f;
+FILA* f;
 
 void enfileira(int valor){
     NO* ptr = (NO *) malloc(sizeof(NO));
@@ -37,9 +37,9 @@ int desenfileira(){
 }
 
 int main(){
-    f = (FILA *) malloc(sizeof(FILA));
-    f->inicio = NULL;
-    f->fim = NULL;
+    //f = (FILA *) malloc(sizeof(FILA));
+    //f->inicio = NULL;
+    //f->fim = NULL;
     enfileira(10);
     enfileira(30);
     enfileira(50);
