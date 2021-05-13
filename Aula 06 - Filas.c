@@ -31,6 +31,20 @@ void desenfileira(){
     }
 }
 
+void mostra_fila(){
+    printf("Mostrando FILA: \n\n");
+    if(fila.fim == 0){
+        printf("Fila Vazia!\n");
+    }else{
+        printf("Início da Fila: => ");
+        for(int i = 0; i < fila.fim; i++){
+        printf(" %d ", fila.dados[i]);
+        }
+        printf("<= Fim da fila.\n\n\n\n\n");
+    }
+    printf("\n\n\n");
+}
+
 int main(){
     int elem, escolha;
     do{
@@ -40,6 +54,7 @@ int main(){
         printf("3. Visualiza FILA.\n");
         printf("0. Sair\n");
         scanf("%d", &escolha);
+        system("clear");
 
         switch (escolha){
         case 0:
@@ -50,23 +65,17 @@ int main(){
             printf("Digite um número inteiro para enfileirar: \n");
             scanf("%d", &elem);
             enfileira(elem);
+            mostra_fila();
             break;
         
         case 2:
             printf("Você desenfileirou o número %d .\n", fila.dados[0]);
             desenfileira();
+            mostra_fila();
             break;
         
         case 3:
-            printf("Mostrando FILA: ");
-            if(fila.fim == 0){
-                printf("Fila Vazia!\n");
-            }else{
-                for(int i = 0; i < fila.fim; i++){
-                printf("%d ", fila.dados[i]);
-                }
-            }
-            printf("\n\n\n");
+            mostra_fila();
             break;
         
         default:
