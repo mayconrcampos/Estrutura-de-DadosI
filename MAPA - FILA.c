@@ -4,6 +4,8 @@
  ***************************************************************
  ** Atividade: MAPA - ADS - ESTRUTURA DE DADOS I - 52/2021 *****
  ***************************************************************
+ ** SO: Linux Fedora 34 Workstation - Kernel: 5.11.19 **********
+ ***************************************************************
 */
 
 
@@ -30,7 +32,7 @@ fila fila_cadastro;
 
 void enfileira(){
     if(fila_cadastro.fim == tamanho){
-        printf("Fila Cheia!\n\n\n\n");
+        printf("Não é possível enfileirar itens!\n\n\n\n");
     }else{
         printf("Digite o RA: \n");
         scanf(" %s", fila_cadastro.dados[fila_cadastro.fim].RA);
@@ -47,15 +49,13 @@ void enfileira(){
         printf("Digite a Matrícula: \n");
         scanf(" %s", fila_cadastro.dados[fila_cadastro.fim].matricula);
 
-
-        fila_cadastro.fim++;
-
+        fila_cadastro.fim++;        
     }
 }
 
 void desenfileira(){
     if(fila_cadastro.fim == fila_cadastro.ini){
-        printf("A Fila está vazia!\n");
+        printf("Não é possível desenfileirar itens!\n");
     }else{
         for(int i = 0; i < fila_cadastro.fim; i++){
             strcpy(fila_cadastro.dados[i].RA, fila_cadastro.dados[i+1].RA);
@@ -69,7 +69,7 @@ void desenfileira(){
 void esvaziar(){
     fila_cadastro.fim = 0;
     if(fila_cadastro.ini == fila_cadastro.fim){
-        printf("Fila Esvaziada!\n\n");
+        printf("Esvaziando Fila...!\n\n");
     }
 }
 
@@ -79,6 +79,11 @@ void mostrar_fila(){
     }else{
         printf("Imprimindo FILA.\n");
         printf("---------------------------\n");
+        if(fila_cadastro.fim == tamanho){
+            printf("-----------\n");
+            printf("Fila Cheia!\n");
+            printf("-----------\n");
+        }
         for(int i = 0; i < fila_cadastro.fim; i++){
             printf("Posição: 0%d\n\n", i + 1);          
             printf("RA: %s\n", fila_cadastro.dados[i].RA);           
@@ -113,6 +118,7 @@ int main(){
             case 1:
                 printf("1. Inserir Elemento.\n\n");
                 enfileira();
+                system("clear");
                 mostrar_fila();
                 break;
             case 2:
