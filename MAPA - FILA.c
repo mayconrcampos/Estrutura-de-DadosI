@@ -1,3 +1,12 @@
+/***************************************************************
+ ** Curso: Análise e Desenvolvimento de Sistemas - Unicesumar **
+ ** Aluno: Maycon Robson Campos ra: 21050828-5 *****************
+ ***************************************************************
+ ** Atividade: MAPA - ADS - ESTRUTURA DE DADOS I - 52/2021 *****
+ ***************************************************************
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
