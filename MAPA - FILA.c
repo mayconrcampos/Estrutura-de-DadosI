@@ -5,9 +5,9 @@
 #define tamanho 5
 
 typedef struct cadastro{
-    char RA[11];
+    char RA[15];
     char arquivo[15];
-    char ext[3];
+    char ext[5];
     char matricula[15];
 }cadastro;
 
@@ -24,27 +24,43 @@ void enfileira(){
         printf("Fila Cheia!\n\n\n\n");
     }else{
         printf("Digite o RA: \n");
-        scanf("%s", fila_cadastro.dados[fila_cadastro.fim].RA);
-        __fpurge(stdin);
-        //setbuf(stdin,NULL);
+        scanf(" %s", fila_cadastro.dados[fila_cadastro.fim].RA);
+        setbuf(stdin,NULL);
 
         printf("Digite o nome do Arquivo: \n");
-        fgets(fila_cadastro.dados[fila_cadastro.fim].arquivo, 16, stdin);
-        __fpurge(stdin);
-        //setbuf(stdin,NULL);
+        scanf(" %s", fila_cadastro.dados[fila_cadastro.fim].arquivo);
+        setbuf(stdin,NULL);
 
         printf("Digite a Extensão do Arquivo: \n");
-        fgets(fila_cadastro.dados[fila_cadastro.fim].ext, 4, stdin);
-        __fpurge(stdin);
-        //setbuf(stdin,NULL);
+        scanf(" %s", fila_cadastro.dados[fila_cadastro.fim].ext);
+        setbuf(stdin,NULL);
 
         printf("Digite a Matrícula: \n");
-        fgets(fila_cadastro.dados[fila_cadastro.fim].matricula, 16, stdin);
-        __fpurge(stdin);
-        //setbuf(stdin,NULL);
+        scanf(" %s", fila_cadastro.dados[fila_cadastro.fim].matricula);
+
 
         fila_cadastro.fim++;
 
+    }
+}
+
+void desenfileira(){
+    if(fila_cadastro.fim == fila_cadastro.ini){
+        printf("A Fila está vazia!\n");
+    }else{
+        for(int i = 0; i < fila_cadastro.fim; i++){
+            strcpy(fila_cadastro.dados[i].RA, fila_cadastro.dados[i+1].RA);
+            strcpy(fila_cadastro.dados[i].arquivo, fila_cadastro.dados[i+1].arquivo);
+            strcpy(fila_cadastro.dados[i].ext, fila_cadastro.dados[i+1].ext);
+            strcpy(fila_cadastro.dados[i].matricula, fila_cadastro.dados[i+1].matricula);
+        }fila_cadastro.fim--;
+    }
+}
+
+void esvaziar(){
+    fila_cadastro.fim = 0;
+    if(fila_cadastro.ini == fila_cadastro.fim){
+        printf("Fila Esvaziada!\n\n");
     }
 }
 
@@ -55,8 +71,8 @@ void mostrar_fila(){
         printf("Imprimindo FILA.\n");
         printf("---------------------------\n");
         for(int i = 0; i < fila_cadastro.fim; i++){
-            printf("Posição: 0%d\n\n", i + 1);
-            printf("RA: %s\n", fila_cadastro.dados[i].RA);
+            printf("Posição: 0%d\n\n", i + 1);          
+            printf("RA: %s\n", fila_cadastro.dados[i].RA);           
             printf("Arquivo: %s\n", fila_cadastro.dados[i].arquivo);
             printf("Extensão: %s\n", fila_cadastro.dados[i].ext);
             printf("Matrícula: %s\n", fila_cadastro.dados[i].matricula);
@@ -64,8 +80,6 @@ void mostrar_fila(){
         }
     }
 }
-
-
 
 int main(){
     int opt;
@@ -81,8 +95,7 @@ int main(){
         printf("Opção: 1-2-3-0\n");
         scanf("%d", &opt);
         system("clear");
-        //setbuf(stdin,NULL);
-        __fpurge(stdin);
+        setbuf(stdin,NULL);
 
         switch (opt){
             case 0:
@@ -95,9 +108,13 @@ int main(){
                 break;
             case 2:
                 printf("2. Remover Elemento.\n\n");
+                desenfileira();
+                mostrar_fila();
                 break;
             case 3:
                 printf("3. Esvaziar Fila.\n\n");
+                esvaziar();
+                mostrar_fila();
                 break;
             default:
                 printf("Opção Inválida!\n\n\n\n");
