@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #define tamanho 5
 
 typedef struct {
@@ -60,24 +59,20 @@ int main(){
         case 0:
             printf("Você saiu do Programa.\n");
             break;
-
         case 1:
             printf("Digite um número inteiro para enfileirar: \n");
             scanf("%d", &elem);
             enfileira(elem);
             mostra_fila();
             break;
-        
         case 2:
             printf("Você desenfileirou o número %d .\n", fila.dados[0]);
             desenfileira();
             mostra_fila();
             break;
-        
         case 3:
             mostra_fila();
             break;
-        
         default:
             printf("Opção Inválida.\n");
             break;
