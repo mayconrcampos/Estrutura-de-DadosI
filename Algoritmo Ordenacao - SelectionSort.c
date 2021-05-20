@@ -21,7 +21,7 @@ int main(){
     // Algoritmo de Ordenação SelectionSort
     int min, aux;
     int i, j;
-    for(i = 0; i < tamanho; i++) {
+    for(i = 0; i < tamanho-1; i++) {
         min = i;
         for(j = i + 1; j <= tamanho; j++){
             if(vetor[j] < vetor[min]){
@@ -30,8 +30,8 @@ int main(){
         }
         if(i != min){
             aux = vetor[i];
-            vetor[i] = vetor[j];
-            vetor[j] = aux;
+            vetor[i] = vetor[min];
+            vetor[min] = aux;
         }
     }
 
@@ -42,4 +42,3 @@ int main(){
     printf("\n");
 }
 
-// Não funciona ..... ainda.
