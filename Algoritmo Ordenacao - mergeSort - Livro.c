@@ -13,7 +13,7 @@ void imprimeVetor(int *vetor, int tamanho);
 int main(){
     int opc;
     int tam;
-    int vetor[1000];
+    int vetor[100000];
 
     do{
         printf("1. Gerar e imprimir vetor.\n");
@@ -58,7 +58,7 @@ int main(){
 void geraVetor(int *vet, int tamanho){
     srand(time(NULL));
     for(int i = 0; i < tamanho; i++){
-        vet[i] = rand()%1000;
+        vet[i] = rand()%10000;
     }
 }
 
