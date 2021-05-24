@@ -3,11 +3,14 @@
 #include <stdlib.h>
 #define tamanho 20
 
-void geraVetoreOrdena();
+void geraVetor(int *vetor);
+void bubbleSort(int *vetor);
+void imprimeVetor(int *vetor);
 
 int main(){
     
     int opt;
+    int numeros[tamanho];
 
     do{
         printf("\n\n\n\n\n\n\n-------------------------------------------------------\n");
@@ -25,7 +28,17 @@ int main(){
             printf("Você saiu do programa.\n");
             break;
         case 1:
-            geraVetoreOrdena();
+            printf("Gerando vetor de %d elementos:\n", tamanho);
+            geraVetor(numeros);
+
+            printf("Imprimindo Vetor desordenado.\n");
+            imprimeVetor(numeros);
+
+            printf("Ordenando Vetor com bubbleSort.\n");
+            bubbleSort(numeros);
+
+            printf("Imprimindo Vetor ordenado.\n");
+            imprimeVetor(numeros);
             break; 
         default:
             printf("Opção Inválida!\n");
@@ -36,36 +49,32 @@ int main(){
     return 0;
 }
 
-void geraVetoreOrdena(){
+void geraVetor(int *vetor){
     srand(time(NULL));
-    int numeros[tamanho];
-    int aux = 0;
     // Gerando números aleatórios e preenchendo o Vetor.
     for(int i = 0; i < tamanho; i++){
-        numeros[i] = rand()%10000;
+        vetor[i] = rand()%1000;
     }
-    // Imprimindo Lista Desordenada;
-    printf("Imprimindo Vetor Desordenado.\n");
-    for(int i = 0; i < tamanho; i++){
-        printf("%d, ", numeros[i]);
-    }
-    printf("\n\n");
+}
+
+void bubbleSort(int *vetor){
+    int aux = 0;
     // Algoritmo de Ordenação de Vetor - Bubble Sort;
-    printf("Ordenando Vetor . . . . .\n\n");
     for(int i = 0; i < tamanho; i++){
-        for(int j = i + 1; j <= tamanho; j++){
-            if(numeros[i] > numeros[j]){
-                aux = numeros[i];
-                numeros[i] = numeros[j];
-                numeros[j] = aux;
+        for(int j = i + 1; j < tamanho; j++){
+            if(vetor[i] > vetor[j]){
+                aux = vetor[i];
+                vetor[i] = vetor[j];
+                vetor[j] = aux;
             }
         }
     }
-    printf("Vetor Ordenado!\n\n\n\n");
-    // Imprimindo vetor Ordenado;
-    printf("Imprimindo Vetor Ordenado.\n");
-    for (int i = 0; i < tamanho; i++){
-        printf("%d, ", numeros[i]);
+}
+
+void imprimeVetor(int *vetor){
+    // Imprimindo Lista Desordenada;
+    for(int i = 0; i < tamanho; i++){
+        printf("%d, ", vetor[i]);
     }
-    printf("\n");
+    printf("\n\n");
 }
