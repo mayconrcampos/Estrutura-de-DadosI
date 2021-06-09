@@ -3,10 +3,10 @@
 //#include <stdlib.h>
 #include <stdbool.h>
 
-//N˙mero m·ximo de vÈrtices
+//N√∫mero maximo de v√©rtices
 #define MAXV 8
 
-//Estrutura de um nÛ (vÈrtice da lista de adjacÍncias).
+//Estrutura de um n√≥ (v√©rtice da lista de adjacencias).
 typedef struct str_no {
 	int id;
 	struct str_no *proximo;
@@ -15,33 +15,33 @@ typedef struct str_no {
 //Grafo
 struct str_no grafo[MAXV];
 
-//====================ProtÛtipos de funÁ„o===========================
-// FunÁ„o para impress„o de um vetor.
-// int v[] È o vetor a imprimir;
-// tam È o numero de elementos do vetor.
+//====================Prot√≥tipos de fun√ß√£o===========================
+// Fun√ß√£o para impress√£o de um vetor.
+// int v[] √© o vetor a imprimir;
+// tam √© o numero de elementos do vetor.
 void imprimeVetor(int v[], int tam);
 
-// FunÁ„o de impress„o do grafo, no formato de conjuntos G = {V, E}
+// Fun√ß√£o de impress√£o do grafo, no formato de conjuntos G = {V, E}
 void imprimeGrafoConjuntos(struct str_no g[]);
 
-// FunÁ„o que imprime o grafo no formato da lista de adjacÍncias
+// Fun√ß√£o que imprime o grafo no formato da lista de adjac√™ncias
 void imprimeGrafoListas(struct str_no g[]);
 
-// FunÁ„o para inicializar o grafo.
-// … preciso inicializar: 
+// Fun√ß√£o para inicializar o grafo.
+// √â preciso inicializar: 
 //		- ponteiros com NULL;
-//		- rÛtulos dos vÈrtices com Ìndices de 0 a MAXV-1.
-// str_no g[] È o grafo a imprimir.
+//		- r√≥tulos dos v√©rtices com √≠ndices de 0 a MAXV-1.
+// str_no g[] √© o grafo a imprimir.
 void inicializaGrafo(struct str_no g[]);
 
-// FunÁ„o para inserir arestas (vertices ajacentes).
-// str_no g[] È o grafo;
-// int v1 È o vertice de onde sai a aresta;
-// int v2 È o vÈrtice em que a aresta incide.
+// Fun√ß√£o para inserir arestas (vertices ajacentes).
+// str_no g[] √© o grafo;
+// int v1 √© o vertice de onde sai a aresta;
+// int v2 √© o v√©rtice em que a aresta incide.
 void insereAresta(struct str_no g[], int v1, int v2);
 
-// FunÁ„o que cria um exemplo de grafo.
-// Popula as listas de adjacÍncias com insereAresta()
+// Fun√ß√£o que cria um exemplo de grafo.
+// Popula as listas de adjac√™ncias com insereAresta()
 void criaGrafoExemplo();
 
 // Busca em Profundidade
@@ -53,7 +53,7 @@ void buscaEmLargura(struct str_no g[], int inicio, int alvo);
 
 
 
-//====================ImplementaÁ„o das funÁıes======================
+//====================Implementa√ß√£o das fun√ß√µes======================
 void imprimeVetor(int v[], int tam){
 	int i;
 	printf("\nVetor:\n[ ");
@@ -111,46 +111,46 @@ void inicializaGrafo(struct str_no g[])
 
 void insereAresta(struct str_no g[], int v1, int v2)
 {
-	//VÈrtice a ser inserido na lista de adjacÍncia de v2
+	//V√©rtice a ser inserido na lista de adjac√™ncia de v2
 	struct str_no *vertice1 = (str_no *) malloc(sizeof(str_no));
-	//VÈrtice a ser inserido na lista de adjacÍncia de v1
+	//V√©rtice a ser inserido na lista de adjac√™ncia de v1
 	struct str_no *vertice2 = (str_no *) malloc(sizeof(str_no));
-	//N„o foi possÌvel alocar memÛria, desistindo da inserÁ„o.
+	//N√£o foi poss√≠vel alocar mem√≥ria, desistindo da inser√ß√£o.
 	if (vertice1 == NULL) {
 		printf("*** Falha ao alocar o vertice 1. \n");
 		return;
 	}
-	//N„o foi possÌvel alocar memÛria, desistindo da inserÁ„o.
+	//N√£o foi poss√≠vel alocar mem√≥ria, desistindo da inser√ß√£o.
 	if (vertice2 == NULL) {
 		printf("*** Falha ao alocar o vertice 2. \n");
 		return;
 	}
 	
-	//Inicializando o vÈrtice.
+	//Inicializando o v√©rtice.
 	vertice2->id = v2;
 	vertice2->proximo = NULL;
- /* Posicionando o ponteiro para inserÁ„o 
-    do vÈrtice v2 na lista de adjacÍncia de v1. */
+ /* Posicionando o ponteiro para inser√ß√£o 
+    do v√©rtice v2 na lista de adjac√™ncia de v1. */
 	struct str_no *ptr ;
 	for(ptr = &g[v1]; ptr->proximo != NULL; ptr = ptr->proximo)
 	{
 		
 	}
-	//Inserindo vÈrtice v2 na lista de adjacÍncia v1.
+	//Inserindo v√©rtice v2 na lista de adjac√™ncia v1.
 	ptr->proximo = vertice2;
 
-	//Inicializando o vÈrtice.
+	//Inicializando o v√©rtice.
 	vertice1->id = v1;
 	vertice1->proximo = NULL;
- /* Posicionando o ponteiro para inserÁ„o 
-    do vÈrtice v1 na lista de adjacÍncia de v2. */
+ /* Posicionando o ponteiro para inser√ß√£o 
+    do v√©rtice v1 na lista de adjac√™ncia de v2. */
 	for(ptr = &g[v2]; ptr->proximo != NULL; ptr = ptr->proximo);
-	//Inserindo vÈrtice v2 na lista de adjacÍncia v1.
+	//Inserindo v√©rtice v2 na lista de adjac√™ncia v1.
 	ptr->proximo = vertice1;
 	
 }
 
-// A funÁ„o criaGrafoExemplo ir· criar o grafo abaixo (È uma ·rvore bin·ria):
+// A fun√ß√£o criaGrafoExemplo ir√° criar o grafo abaixo (√© uma √°rvore bin√°ria):
 // (0)
 //	|---(1)
 //	|	 |--(3)
@@ -185,8 +185,8 @@ void criaGrafoExemplo()
 void buscaEmProfundidade(struct str_no g[], int inicio, int alvo){
 	
 	int pilha[MAXV]; //pilha
-	bool visitado[MAXV]; //nÛs visitados
-	int indice = 0; //Ìndice do topo da pilha
+	bool visitado[MAXV]; //n√≥s visitados
+	int indice = 0; //√≠ndice do topo da pilha
 	bool achou = false; //flag de controle d
 	int corrente = inicio;
 	struct str_no *ptr;
@@ -194,14 +194,14 @@ void buscaEmProfundidade(struct str_no g[], int inicio, int alvo){
 	
 	printf("=-=-=-= Busca em Profundidade =-=-=-=\n");
 	
-	//Marcando os nÛs como 'n„o visitados'.
+	//Marcando os n√≥s como 'n√£o visitados'.
 	for(i=0; i < MAXV; i++){
 		visitado[i] = false;
 	}
 	
 	while(true){
-		//Se o nÛ corrente n„o foi visitado, marque-o como visitado.
-		//Empilhe o nÛ corrente.
+		//Se o n√≥ corrente n√£o foi visitado, marque-o como visitado.
+		//Empilhe o n√≥ corrente.
 		if(!visitado[corrente]){
 			printf("VISITANDO: %d. \n", corrente);
 			if(corrente == alvo)
@@ -214,7 +214,7 @@ void buscaEmProfundidade(struct str_no g[], int inicio, int alvo){
 			indice++;
 		}
 		
-		//Buscando por nÛs adjacentes, n„o visitados.
+		//Buscando por n√≥s adjacentes, n√£o visitados.
 		achou = false;
 		for(ptr = g[corrente].proximo; ptr != NULL; ptr = ptr->proximo){
 			if(!visitado[ptr->id]){
@@ -224,15 +224,15 @@ void buscaEmProfundidade(struct str_no g[], int inicio, int alvo){
 		}
 		
 		if(achou){
-			//Atalizando o nÛ corrente, com o vÈrtice adjacente n„o visitado.
+			//Atalizando o n√≥ corrente, com o v√©rtice adjacente n√£o visitado.
 			corrente = ptr->id;
 		}
 		else{
-			//N„o h· vÈrtices adjacentes n„o visitados.
-			//Tentando desempilhar o vÈrtice do topo.
+			//N√£o h√° v√©rtices adjacentes n√£o visitados.
+			//Tentando desempilhar o v√©rtice do topo.
 			indice--;
 			if(indice==-1){
-				//N„o h· mais vÈrtices n„o visitados, encerrando a busca.
+				//N√£o h√° mais v√©rtices n√£o visitados, encerrando a busca.
 				printf("Encerrando a busca. \n");
 				break;
 			}
@@ -257,23 +257,23 @@ void buscaEmLargura(struct str_no g[], int inicio, int alvo){
 	
 	printf("=-=-=-= Busca em Largura =-=-=-= \n");
 	
-	//Marcando os nÛs como 'n„o visitados'.
+	//Marcando os n√≥s como 'n√£o visitados'.
 	for(i=0; i < MAXV; i++)
 		visitado[i] = false;
 	
-	//Partindo do primeiro vÈrtice.
+	//Partindo do primeiro v√©rtice.
 	printf("VISITANDO: %d. \n", corrente);
 	visitado[corrente] = true;
 	fila[indice] = corrente;
 	indice++;
 	
 	while(true){
-		//Visitar todos os nÛs adjacentes ao vÈrtice corrente
+		//Visitar todos os n√≥s adjacentes ao v√©rtice corrente
 		for(ptr = g[corrente].proximo; ptr != NULL; ptr = ptr->proximo){
-			//Caso o vÈrtice ainda n„o tenha sido visitado:
+			//Caso o v√©rtice ainda n√£o tenha sido visitado:
 			corrente = ptr->id;
 			if(!visitado[corrente]){
-				//Enfileirando e marcando o vÈrtice como visitado.
+				//Enfileirando e marcando o v√©rtice como visitado.
 				printf("VISITANDO: %d. \n", corrente);
 				if(corrente == alvo)
 				{
@@ -286,19 +286,19 @@ void buscaEmLargura(struct str_no g[], int inicio, int alvo){
 			}
 		}
 		
-		//Caso a fila n„o esteja vazia:
+		//Caso a fila n√£o esteja vazia:
 		if(indice!=0)
 		{
-			//Atualizando vÈrtice corrente.
+			//Atualizando v√©rtice corrente.
 			corrente = fila[0];
-			//Desenfileirando o primeiro vÈrtice.
+			//Desenfileirando o primeiro v√©rtice.
 			for(i=1;i<indice+1;i++)
 				fila[i-1]=fila[i];
 			indice--;
 		}
 		else
 		{
-			//N„o h· mais vÈrtices para visitar.
+			//N√£o h√° mais v√©rtices para visitar.
 			printf("Encerrando busca.\n");
 			break;
 		}
@@ -310,14 +310,14 @@ void buscaEmLargura(struct str_no g[], int inicio, int alvo){
 ////==================Corpo Principal do Programa====================
 int main()
 {
-	//… sempre precizo iniciazlizar o grafo.
-	//Cada nÛ recebe seu rÛtulo, e os ponteiros s„o "zerados"
+	//√â sempre precizo iniciazlizar o grafo.
+	//Cada n√≥ recebe seu r√≥tulo, e os ponteiros s√£o "zerados"
 	inicializaGrafo(grafo);
 	
-	//Criando um grafo de exemplo (Apenas para fins did·ticos).
+	//Criando um grafo de exemplo (Apenas para fins did√°ticos).
 	criaGrafoExemplo();
 	
-	//Imprimindo o conjunto V de vÈrtices e o conjunto E de arestas 
+	//Imprimindo o conjunto V de v√©rtices e o conjunto E de arestas 
 	imprimeGrafoConjuntos(grafo);
 	
 	imprimeGrafoListas(grafo);
@@ -328,34 +328,3 @@ int main()
 	
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
